@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}Parameters list{% endblock %}
+{% block content %}
+    <h1 class="title">Parameters</h1>
+    <form action="" method="post" name="parameter_edit">
+      <div class="field">
+        <label for="frequency" class="label">Frequency</label>
+        <div class="control">
+          <input type="text" name="frequency" class="input" required="required"/>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="power" class="label">Power</label>
+        <div class="control">
+          <input type="number" name="power" class="input" required="required"/>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small" type="submit" name="Add" value="Add"> Add </button>
+        </div>
+      </div>
+    </form>
+    {% if parameters %}
+    <form action="" method="post" name="parameter_list">
+    <table class="table is-striped is-fullwidth">
+      {% for parameter in parameters %}
+      <tr>
+        <td>
+            <label class="checkbox">
+              <input type="checkbox" name="parameter_ids" value="{{ parameter.id }}"/>
+        </label>
+            <p>id: {{ parameter.id }} D: {{ parameter.date }} F: {{ parameter.Frequency }} P:{{ parameter.Power }}</p>
+      </td>
+      </tr>
+      {% endfor %}
+    </table>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small" type="submit" name="Delete" value="Delete"> Delete </button>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+{% endblock %}
+
